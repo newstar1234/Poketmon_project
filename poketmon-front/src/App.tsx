@@ -9,11 +9,11 @@ import Result from './result';
 function App() {
   return (
     <Router>
-    <Routes>
-      <Route path={MAIN_PATH} element={<Main/>}/>
-      <Route path={SAVE_PATH} element={<Save/>}/>
-      <Route path={RESULT_PATH} element={<Result/>}/>
-    </Routes>
+      <Routes>
+        <Route path={MAIN_PATH} element={<Main/>}/>
+        <Route path={SAVE_PATH} element={<Save/>}/>
+        <Route path={RESULT_PATH} element={<Result/>}/>
+      </Routes>
     </Router>
   );
 }

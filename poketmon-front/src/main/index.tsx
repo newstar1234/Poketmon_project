@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './style.css';
 import {useNavigate} from "react-router-dom";
+import InputBox from '../components/InputBox';
 
 //            component           //
 export default function Main() {
 
 //            state           //
-const [poketName, setPoketName] = useState<null>();
+const [name, setName] = useState<String>('');
 
 //            function           //
 const navigator = useNavigate();
@@ -33,9 +34,12 @@ const onResultSearchClickHandler = () => {
             </div>
             <div className='poket-main-list-box'>
               <div className='poket-main-list-title'>저장된 포켓몬 목록</div>
-              <div className='poket-main-list-content'>이름</div>
-              <div className='poket-main-list-content'>이름</div>
-              <div className='poket-main-list-content'>이름</div>
+              <div className='poket-main-list-content'>
+                <InputBox name='피카츄'/>
+                <InputBox name='피카츄'/>
+                <InputBox name='피카츄'/>
+                <InputBox name='피카츄'/>
+              </div>
             </div>
             <div className='poket-main-search'>
               <div className='poket-main-search-input-box'>

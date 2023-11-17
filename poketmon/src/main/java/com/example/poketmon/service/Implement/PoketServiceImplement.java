@@ -4,8 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.poketmon.dto.ResponseDto;
+import com.example.poketmon.dto.request.PatchPoketRequestDto;
 import com.example.poketmon.dto.request.PostPoketRequestDto;
 import com.example.poketmon.dto.response.DeletePoketResponseDto;
+import com.example.poketmon.dto.response.PatchPoketResponseDto;
 import com.example.poketmon.dto.response.PostPoketResponseDto;
 import com.example.poketmon.entity.PoketEntity;
 import com.example.poketmon.repository.PoketRepository;
@@ -60,9 +62,21 @@ public class PoketServiceImplement implements PoketService{
   }
 
   @Override
-  public ResponseEntity<?> update() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
+  public ResponseEntity<? super PatchPoketResponseDto> update(Integer poketmonNumber, PatchPoketRequestDto dto) {
+
+    try {
+      PoketEntity poketEntity = poketRepository.findByPoketmonNumber(poketmonNumber);
+      if(poketEntity == null) return PatchPoketResponseDto.fail();
+
+      poketEntity.patch(dto);
+
+      poketRepository.save(poketEntity);
+      
+    } catch (Exception exception) {
+      exception.printStackTrace();
+      return ResponseDto.databaseError();
+    }
+    return PatchPoketResponseDto.success();
   }
   
 }

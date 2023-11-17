@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.poketmon.dto.request.PatchPoketRequestDto;
 import com.example.poketmon.dto.request.PostPoketRequestDto;
 import com.example.poketmon.dto.response.DeletePoketResponseDto;
+import com.example.poketmon.dto.response.PatchPoketResponseDto;
 import com.example.poketmon.dto.response.PostPoketResponseDto;
 import com.example.poketmon.service.PoketService;
 
@@ -44,9 +46,13 @@ public class MainController {
   }
 
   // 데이터 수정
-  @PatchMapping("/update")
-  public ResponseEntity<?> update() {
-    return null;
+  @PatchMapping("/{poketmonNumber}")
+  public ResponseEntity<? super PatchPoketResponseDto> update(
+    @PathVariable(value = "poketmonNumber", required = true) Integer poketmonNumber,
+    @RequestBody @Valid PatchPoketRequestDto requestBody
+  ) {
+    ResponseEntity<? super PatchPoketResponseDto> response = poketService.update(poketmonNumber, requestBody);
+    return response;
   }
 
 }

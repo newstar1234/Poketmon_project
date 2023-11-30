@@ -16,5 +16,7 @@ public interface PoketService {
   ResponseEntity<? super DeletePoketResponseDto> delete(Integer poketmonNumber);
   // 데이터 수정 메소드 //
   ResponseEntity<? super PatchPoketResponseDto> update(Integer poketmonNumber, PatchPoketRequestDto dto);
+  // 데이터 조회 메소드 //
+  ResponseEntity<?> getPoket(String name);
 
 }

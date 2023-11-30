@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,6 +53,15 @@ public class MainController {
     @RequestBody @Valid PatchPoketRequestDto requestBody
   ) {
     ResponseEntity<? super PatchPoketResponseDto> response = poketService.update(poketmonNumber, requestBody);
+    return response;
+  }
+
+  // 데이터 조회(이름)
+  @GetMapping("/{name}")
+  public ResponseEntity<?> getPoket(
+    @PathVariable(value = "name", required = true) String name
+  ){
+    ResponseEntity<?> response = poketService.getPoket(name);
     return response;
   }
 
